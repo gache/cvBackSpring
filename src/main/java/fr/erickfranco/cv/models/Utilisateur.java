@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
 
 /**
  * @author Erick Franco
@@ -14,7 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur {
+public class Utilisateur implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long utilisateurId;
