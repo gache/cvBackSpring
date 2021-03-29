@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Langage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 30, nullable = false)
     private String langageInformatique;
