@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 60, nullable = false)
     private String titrePoste;
