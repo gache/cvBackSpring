@@ -18,7 +18,7 @@ import javax.persistence.*;
 public class Diplome {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 80, nullable = false)
     private String nomDiplome;
