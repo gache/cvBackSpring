@@ -11,9 +11,9 @@ import java.util.Optional;
 public interface ExperienceServiceInter {
     List<Experience> findAll();
 
-    Optional<Experience> findById(Integer id);
+    Optional<Experience> findById(Long id);
 
     Experience saveExperience(Experience experience);
 
-    void deleteById(Integer id);
+    void deleteById(Long id);
 }
