@@ -17,9 +17,9 @@ import javax.persistence.*;
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer utilisateurId;
+    private Long utilisateurId;
 
-    private String name;
+    private String nom;
 
     private String mdp;
 }
