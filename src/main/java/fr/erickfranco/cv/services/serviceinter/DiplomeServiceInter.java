@@ -16,7 +16,7 @@ public interface DiplomeServiceInter {
 
     Diplome saveDiplome(Diplome diplome);
 
-    Optional<Diplome> findDiplomeById(Integer id);
+    Optional<Diplome> findDiplomeById(Long id);
 
-    void deleteDiplomeById(Integer id);
+    void deleteDiplomeById(Long id);
 }
