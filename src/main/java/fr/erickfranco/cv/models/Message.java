@@ -19,7 +19,7 @@ import javax.validation.constraints.Pattern;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Email
     @Column(nullable = false, length = 150)
