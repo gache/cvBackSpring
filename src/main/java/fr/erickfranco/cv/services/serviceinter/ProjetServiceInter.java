@@ -12,9 +12,9 @@ public interface ProjetServiceInter {
 
     List<Projet> findAllProjet();
 
-    Optional<Projet> findProjetById(Integer id);
+    Optional<Projet> findProjetById(Long id);
 
     Projet saveProjet(Projet projet);
 
-    void deleteById(Integer id);
+    void deleteById(Long id);
 }

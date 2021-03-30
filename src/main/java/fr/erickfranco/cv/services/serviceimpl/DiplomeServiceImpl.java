@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class DiplomeServiceImpl implements DiplomeServiceInter {
 
-    public final DiplomeRepository diplomeRepository;
+    private final DiplomeRepository diplomeRepository;
 
     @Autowired
     public DiplomeServiceImpl(DiplomeRepository diplomeRepository) {
