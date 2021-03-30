@@ -37,5 +37,10 @@ public class ExperienceController {
         return ResponseEntity.status(HttpStatus.CREATED).body(experienceServiceInter.saveExperience(experience));
     }
 
+    @PutMapping("/updateExperience")
+    public ResponseEntity<Experience> updateExperience(@RequestBody Experience experience) {
+        return ResponseEntity.status(HttpStatus.OK).body(experienceServiceInter.saveExperience(experience));
+    }
+
 
 }
