@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class MessageServiceImpl implements MessageServiceInter {
 
-    public final MessageRepository messageRepository;
+    private final MessageRepository messageRepository;
 
     public MessageServiceImpl(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;

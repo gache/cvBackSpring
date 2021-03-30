@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class LangageServiceImpl implements LangageServiceInter {
 
-    public final LangageRepository langageRepository;
+    private final LangageRepository langageRepository;
 
     public LangageServiceImpl(LangageRepository langageRepository) {
         this.langageRepository = langageRepository;

@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class ExperienceServiceImpl implements ExperienceServiceInter {
 
-    public final ExperienceRepository experienceRepository;
+    private final ExperienceRepository experienceRepository;
 
     @Autowired
     public ExperienceServiceImpl(ExperienceRepository experienceRepository) {
