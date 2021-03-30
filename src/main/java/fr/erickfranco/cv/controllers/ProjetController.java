@@ -42,4 +42,10 @@ public class ProjetController {
         return ResponseEntity.status(HttpStatus.OK).body(projetServiceInter.saveProjet(projet));
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Projet> deleteProjet(@PathVariable("id") Long id) {
+        projetServiceInter.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
