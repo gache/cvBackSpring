@@ -44,5 +44,11 @@ public class DiplomeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(diplomeServiceInter.saveDiplome(diplome));
     }
 
+    @DeleteMapping("/deleteDiplomeId/{id}")
+    public ResponseEntity<Diplome> delete(@PathVariable("id") Long id) {
+        diplomeServiceInter.deleteDiplomeById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }
