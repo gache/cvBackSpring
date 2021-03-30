@@ -36,7 +36,7 @@ public class LangageServiceImpl implements LangageServiceInter {
     @Override
     public Langage saveLangage(Langage langage) {
         if (langage.getLangageInformatique().isEmpty()) {
-            System.out.println("Le lanagage est est obligatoire");
+            System.out.println("Le langage est est obligatoire");
         }
         return langageRepository.save(langage);
     }
