@@ -43,6 +43,12 @@ public class MessageController {
         return ResponseEntity.status(HttpStatus.CREATED).body(messageServiceInter.saveMessage(message));
     }
 
+    @DeleteMapping("/deleteMessagesId/{id}")
+    public ResponseEntity<Message> deleteMessage(@PathVariable Long id) {
+        messageServiceInter.deleteMessageById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 
 }
