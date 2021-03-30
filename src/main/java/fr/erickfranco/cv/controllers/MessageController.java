@@ -38,4 +38,11 @@ public class MessageController {
         return ResponseEntity.status(HttpStatus.CREATED).body(messageServiceInter.saveMessage(message));
     }
 
+    @PutMapping("/updateMessage")
+    public ResponseEntity<Message> updateMessage(@RequestBody Message message) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(messageServiceInter.saveMessage(message));
+    }
+
+
+
 }
