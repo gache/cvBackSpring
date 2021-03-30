@@ -37,5 +37,10 @@ public class LangageController {
         return ResponseEntity.status(HttpStatus.CREATED).body(langageServiceInter.saveLangage(langage));
     }
 
+    @PutMapping("/updateLangage")
+    public ResponseEntity<Langage> updateLangage(@RequestBody Langage langage) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(langageServiceInter.saveLangage(langage));
+    }
+
 
 }
