@@ -42,5 +42,11 @@ public class LangageController {
         return ResponseEntity.status(HttpStatus.CREATED).body(langageServiceInter.saveLangage(langage));
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Langage> deleteLangage(@PathVariable("id") Long id) {
+        langageServiceInter.deleteLangageById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }
