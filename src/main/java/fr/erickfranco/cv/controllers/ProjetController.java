@@ -37,4 +37,9 @@ public class ProjetController {
         return ResponseEntity.status(HttpStatus.CREATED).body(projetServiceInter.saveProjet(projet));
     }
 
+    @PutMapping("/updateProjet")
+    public ResponseEntity<Projet> updateProjet(@RequestBody Projet projet) {
+        return ResponseEntity.status(HttpStatus.OK).body(projetServiceInter.saveProjet(projet));
+    }
+
 }
