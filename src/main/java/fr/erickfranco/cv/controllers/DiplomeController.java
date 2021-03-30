@@ -39,5 +39,10 @@ public class DiplomeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(diplomeServiceInter.saveDiplome(diplome));
     }
 
+    @PutMapping("/updateDiplome")
+    public ResponseEntity<Diplome> updateDiplome(@RequestBody Diplome diplome) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(diplomeServiceInter.saveDiplome(diplome));
+    }
+
 
 }
