@@ -42,5 +42,11 @@ public class ExperienceController {
         return ResponseEntity.status(HttpStatus.OK).body(experienceServiceInter.saveExperience(experience));
     }
 
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Experience> deleteExperience(@PathVariable Long id) {
+        experienceServiceInter.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }
