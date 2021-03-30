@@ -5,10 +5,7 @@ import fr.erickfranco.cv.services.serviceinter.DiplomeServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +32,11 @@ public class DiplomeController {
     @GetMapping("/diplome/{id}")
     public ResponseEntity<Optional<Diplome>> getDiplomeById(@PathVariable("id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(diplomeServiceInter.findDiplomeById(id));
+    }
+
+    @PostMapping("/createDiplome")
+    public ResponseEntity<Diplome> createDiplome(@RequestBody Diplome diplome) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(diplomeServiceInter.saveDiplome(diplome));
     }
 
 
