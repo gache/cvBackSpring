@@ -12,9 +12,9 @@ public interface MessageServiceInter {
 
     List<Message> findAllMessage();
 
-    void deleteMessageById(Integer id);
-
-    Optional<Message> findMessageById(Integer id);
+    Optional<Message> findMessageById(Long id);
 
     Message saveMessage(Message message);
+
+    void deleteMessageById(Long id);
 }

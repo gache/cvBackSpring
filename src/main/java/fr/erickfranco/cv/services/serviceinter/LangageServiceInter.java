@@ -11,9 +11,9 @@ import java.util.Optional;
 public interface LangageServiceInter {
     List<Langage> findAllLangage();
 
-    Optional<Langage> findLangageById(Integer id);
+    Optional<Langage> findLangageById(Long id);
 
     Langage saveLangage(Langage langage);
 
-    void deleteLangageById(Integer id);
+    void deleteLangageById(Long id);
 }
