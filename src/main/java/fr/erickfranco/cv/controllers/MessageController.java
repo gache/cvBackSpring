@@ -28,7 +28,7 @@ public class MessageController {
     }
 
 
-    @GetMapping("/messages/messageId/{id}")
+    @GetMapping("/messageId/{id}")
     public ResponseEntity<Optional<Message>> getMessageById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(messageServiceInter.findMessageById(id));
     }
