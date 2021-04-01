@@ -29,7 +29,7 @@ public class DiplomeController {
         return ResponseEntity.status(HttpStatus.OK).body(diplomeServiceInter.findAllDiplome());
     }
 
-    @GetMapping("/diplome/{id}")
+    @GetMapping("/diplomeId/{id}")
     public ResponseEntity<Optional<Diplome>> getDiplomeById(@PathVariable("id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(diplomeServiceInter.findDiplomeById(id));
     }
@@ -45,7 +45,7 @@ public class DiplomeController {
     }
 
     @DeleteMapping("/deleteDiplomeId/{id}")
-    public ResponseEntity<Diplome> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         diplomeServiceInter.deleteDiplomeById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
