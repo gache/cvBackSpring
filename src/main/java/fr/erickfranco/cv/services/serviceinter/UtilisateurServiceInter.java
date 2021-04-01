@@ -17,7 +17,7 @@ public interface UtilisateurServiceInter extends UserDetailsService {
 
     Utilisateur findUserById(Long id);
 
-    Utilisateur saveUser(Utilisateur utilisateur);
+    Utilisateur createUtilisateur(Utilisateur utilisateur);
 
     void deleteById(Long id);
 }

@@ -25,12 +25,6 @@ public class UtilisateurServiceImpl implements UtilisateurServiceInter {
         this.utilisateurRepository = utilisateurRepository;
     }
 
-    @Bean
-    private PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-
     @Override
     public UserDetails loadUserByUsername(String nomUtilisateur) throws UsernameNotFoundException {
         Objects.requireNonNull(nomUtilisateur);
@@ -49,9 +43,13 @@ public class UtilisateurServiceImpl implements UtilisateurServiceInter {
     }
 
     @Override
-    public Utilisateur saveUser(Utilisateur utilisateur) {
+    public Utilisateur createUtilisateur(Utilisateur utilisateur) {
         utilisateur.setMdp(passwordEncoder().encode(utilisateur.getPassword()));
         return utilisateurRepository.save(utilisateur);
+    }
+    @Bean
+    private PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
