@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author Erick Franco
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "experience")
-public class Experience {
+public class Experience  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

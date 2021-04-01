@@ -45,7 +45,7 @@ public class DiplomeController {
     }
 
     @DeleteMapping("/deleteDiplomeId/{id}")
-    public ResponseEntity<Diplome> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         diplomeServiceInter.deleteDiplomeById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
