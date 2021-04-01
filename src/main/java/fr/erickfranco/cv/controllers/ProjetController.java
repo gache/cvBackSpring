@@ -27,7 +27,7 @@ public class ProjetController {
         return ResponseEntity.status(HttpStatus.OK).body(projetServiceInter.findAllProjet());
     }
 
-    @GetMapping("projetsId/{id}")
+    @GetMapping("projetId/{id}")
     public ResponseEntity<Optional<Projet>> projetById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(projetServiceInter.findProjetById(id));
     }
