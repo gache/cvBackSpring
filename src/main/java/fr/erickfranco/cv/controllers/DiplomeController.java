@@ -29,7 +29,7 @@ public class DiplomeController {
         return ResponseEntity.status(HttpStatus.OK).body(diplomeServiceInter.findAllDiplome());
     }
 
-    @GetMapping("/diplome/{id}")
+    @GetMapping("/diplomeId/{id}")
     public ResponseEntity<Optional<Diplome>> getDiplomeById(@PathVariable("id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(diplomeServiceInter.findDiplomeById(id));
     }
