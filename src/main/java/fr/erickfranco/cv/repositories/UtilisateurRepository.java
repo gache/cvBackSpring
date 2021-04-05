@@ -14,6 +14,6 @@ import java.util.Optional;
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
 
     @Query(" select u from Utilisateur u " +
-            " where u.nom = ?1")
+            " where u.nomUtilisateur = ?1")
     Optional<Utilisateur> findUserWithName(String username);
 }

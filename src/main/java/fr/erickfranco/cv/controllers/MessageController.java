@@ -28,7 +28,7 @@ public class MessageController {
     }
 
 
-    @GetMapping("/messages/messageId/{id}")
+    @GetMapping("/messageId/{id}")
     public ResponseEntity<Optional<Message>> getMessageById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(messageServiceInter.findMessageById(id));
     }
@@ -44,7 +44,7 @@ public class MessageController {
     }
 
     @DeleteMapping("/deleteMessagesId/{id}")
-    public ResponseEntity<Message> deleteMessage(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteMessage(@PathVariable Long id) {
         messageServiceInter.deleteMessageById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

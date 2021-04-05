@@ -27,7 +27,7 @@ public class ProjetController {
         return ResponseEntity.status(HttpStatus.OK).body(projetServiceInter.findAllProjet());
     }
 
-    @GetMapping("projetsId/{id}")
+    @GetMapping("projetId/{id}")
     public ResponseEntity<Optional<Projet>> projetById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(projetServiceInter.findProjetById(id));
     }
@@ -42,8 +42,8 @@ public class ProjetController {
         return ResponseEntity.status(HttpStatus.OK).body(projetServiceInter.saveProjet(projet));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Projet> deleteProjet(@PathVariable("id") Long id) {
+    @DeleteMapping("/deleteProjet/{id}")
+    public ResponseEntity<Void> deleteProjet(@PathVariable Long id) {
         projetServiceInter.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
