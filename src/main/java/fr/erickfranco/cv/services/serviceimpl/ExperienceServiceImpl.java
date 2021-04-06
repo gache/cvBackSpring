@@ -2,12 +2,16 @@ package fr.erickfranco.cv.services.serviceimpl;
 
 import fr.erickfranco.cv.models.Experience;
 import fr.erickfranco.cv.repositories.ExperienceRepository;
+import fr.erickfranco.cv.services.DTO.ExperienceDTO;
+import fr.erickfranco.cv.services.mapper.ExperienceMapper;
 import fr.erickfranco.cv.services.serviceinter.ExperienceServiceInter;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author Erick Franco
@@ -16,40 +20,41 @@ import java.util.Optional;
 public class ExperienceServiceImpl implements ExperienceServiceInter {
 
     private final ExperienceRepository experienceRepository;
+    private final ExperienceMapper experienceMapper;
 
-    @Autowired
-    public ExperienceServiceImpl(ExperienceRepository experienceRepository) {
+    public ExperienceServiceImpl(ExperienceRepository experienceRepository, ExperienceMapper experienceMapper) {
         this.experienceRepository = experienceRepository;
-    }
-
-
-    @Override
-    public List<Experience> findAll() {
-        return experienceRepository.findAll();
+        this.experienceMapper = experienceMapper;
     }
 
     @Override
-    public Optional<Experience> findById(Long id) {
-        if (!experienceRepository.existsById(id)) {
-            System.out.println("L'experience avec l'id " + id + " n'existe pas ");
-        }
-        return Optional.of(experienceRepository.getOne(id));
+    public Page<ExperienceDTO> findAllExperiences(Pageable pageable) {
+        return experienceRepository.findAll(pageable)
+                .map(experienceMapper::toDTO);
     }
 
     @Override
-    public Experience saveExperience(Experience experience) {
-        if (experience.getTitrePoste().isEmpty()) {
-            System.out.println("Le titre de l'experience est obligatoire");
-        }
+    public List<ExperienceDTO> findAllAsList() {
+        return experienceRepository.findAll()
+                .stream()
+                .map(experienceMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 
-        return experienceRepository.save(experience);
+    @Override
+    public Optional<ExperienceDTO> findById(Long id) {
+        return experienceRepository.findById(id).map(experienceMapper::toDTO);
+    }
+
+    @Override
+    public ExperienceDTO saveExperience(ExperienceDTO experienceDTO) {
+        Experience experience = experienceMapper.toEntity(experienceDTO);
+        experience = experienceRepository.save(experience);
+        return experienceMapper.toDTO(experience);
     }
 
     @Override
     public void deleteById(Long id) {
-        if (!experienceRepository.existsById(id)) {
-            System.out.println("L'experience que vous souhaitez l'eliminer avec l'id numéro: " + id + " n'existe pas ");
-        }
         experienceRepository.deleteById(id);
     }
 }
