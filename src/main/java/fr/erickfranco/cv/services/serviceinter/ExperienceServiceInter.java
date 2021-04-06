@@ -1,7 +1,5 @@
 package fr.erickfranco.cv.services.serviceinter;
 
-import fr.erickfranco.cv.models.Experience;
-import fr.erickfranco.cv.services.DTO.DiplomeDTO;
 import fr.erickfranco.cv.services.DTO.ExperienceDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

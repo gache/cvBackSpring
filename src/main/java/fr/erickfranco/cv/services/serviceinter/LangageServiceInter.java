@@ -1,6 +1,8 @@
 package fr.erickfranco.cv.services.serviceinter;
 
-import fr.erickfranco.cv.models.Langage;
+import fr.erickfranco.cv.services.DTO.LangageDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,11 +11,14 @@ import java.util.Optional;
  * @author Erick Franco
  */
 public interface LangageServiceInter {
-    List<Langage> findAllLangage();
 
-    Optional<Langage> findLangageById(Long id);
+    Page<LangageDTO> findAllLangage(Pageable pageable);
 
-    Langage saveLangage(Langage langage);
+    List<LangageDTO> findAllAsList();
+
+    Optional<LangageDTO> findLangageById(Long id);
+
+    LangageDTO saveLangage(LangageDTO langageDTO);
 
     void deleteLangageById(Long id);
 }
