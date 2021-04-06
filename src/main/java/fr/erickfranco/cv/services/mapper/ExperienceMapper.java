@@ -4,7 +4,9 @@ package fr.erickfranco.cv.services.mapper;
 import fr.erickfranco.cv.models.Experience;
 import fr.erickfranco.cv.services.DTO.ExperienceDTO;
 import org.mapstruct.Mapper;
-
+/**
+ * @author Erick Franco
+ */
 @Mapper(componentModel = "spring")
 public interface ExperienceMapper extends EntityMapper<ExperienceDTO, Experience> {
 
