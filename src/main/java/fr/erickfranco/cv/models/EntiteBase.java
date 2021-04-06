@@ -37,4 +37,36 @@ public class EntiteBase implements Serializable {
     @Column(name = "date_modification")
     @JsonIgnore
     private Instant dateModification = Instant.now();
+
+    public String getCreePar() {
+        return creePar;
+    }
+
+    public void setCreePar(String creePar) {
+        this.creePar = creePar;
+    }
+
+    public Instant getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(Instant dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public String getModifiePar() {
+        return modifiePar;
+    }
+
+    public void setModifiePar(String modifiePar) {
+        this.modifiePar = modifiePar;
+    }
+
+    public Instant getDateModification() {
+        return dateModification;
+    }
+
+    public void setDateModification(Instant dateModification) {
+        this.dateModification = dateModification;
+    }
 }
