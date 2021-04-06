@@ -31,17 +31,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(utilisateurServiceInter).passwordEncoder(passEncoder());
     }
-
+    // Retourne la réponse via http lorsque la connexion réussit
     @Bean
     public AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler() {
         return new AjaxAuthenticationSuccessHandler();
     }
-
+    // Retourne la réponse via http lorsque la connexion échoue
     @Bean
     public AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler() {
         return new AjaxAuthenticationFailureHandler();
     }
-
+    // Retourne la réponse via http lorsque la déconnexion échoue
     @Bean
     public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
         return new AjaxLogoutSuccessHandler();
