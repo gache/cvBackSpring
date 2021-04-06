@@ -11,21 +11,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageDTO {
-
+public class ProjetDTO {
     private Long id;
-    @JsonProperty(value = "email")
-    private String email;
 
     @JsonProperty(value = "nom")
     private String nom;
 
-    @JsonProperty(value = "prenom")
-    private String prenom;
+    @JsonProperty(value = "description")
+    private String description;
 
-    @JsonProperty(value = "sujet")
-    private String sujet;
+    @JsonProperty(value = "langage")
+    private String langage;
 
-    @JsonProperty(value = "message")
-    private String message;
+    @JsonProperty(value = "url")
+    private String url;
 }
