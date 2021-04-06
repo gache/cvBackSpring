@@ -15,9 +15,9 @@ public interface DiplomeMapper extends EntityMapper<DiplomeDTO, Diplome> {
         if (id == null) {
             return null;
         }
-        Diplome typePaiement = new Diplome();
-        typePaiement.setId(id);
-        return typePaiement;
+        Diplome diplome = new Diplome();
+        diplome.setId(id);
+        return diplome;
     }
 
 }
