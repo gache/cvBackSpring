@@ -1,6 +1,8 @@
 package fr.erickfranco.cv.services.serviceinter;
 
-import fr.erickfranco.cv.models.Message;
+import fr.erickfranco.cv.services.DTO.MessageDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,11 +12,13 @@ import java.util.Optional;
  */
 public interface MessageServiceInter {
 
-    List<Message> findAllMessage();
+    Page<MessageDTO> findAllMessage(Pageable pageable);
 
-    Optional<Message> findMessageById(Long id);
+    List<MessageDTO> findAllAsList();
 
-    Message saveMessage(Message message);
+    Optional<MessageDTO> findMessageById(Long id);
+
+    MessageDTO saveMessage(MessageDTO messageDTO);
 
     void deleteMessageById(Long id);
 }
