@@ -41,22 +41,22 @@ public class DiplomeController {
 
 
     @GetMapping("/diplomes/{id}")
-    public ResponseEntity<DiplomeDTO> getTypeDepense(@PathVariable Long id) {
+    public ResponseEntity<DiplomeDTO> getDiplome(@PathVariable Long id) {
         Optional<DiplomeDTO> diplomeDTO = diplomeServiceInter.findDiplomeById(id);
         return RestUtils.wrapOrNotFound(diplomeDTO, null);
     }
 
 
     @PostMapping("/createDiplome")
-    public ResponseEntity<DiplomeDTO> createTypePaiement(@Valid @RequestBody DiplomeDTO diplomeDTO) throws URISyntaxException {
+    public ResponseEntity<DiplomeDTO> createDiplome(@Valid @RequestBody DiplomeDTO diplomeDTO) throws URISyntaxException {
         DiplomeDTO result = diplomeServiceInter.saveDiplome(diplomeDTO);
         return ResponseEntity.created(new URI("/api/type-paiements" + result.getId()))
                 .body(result);
     }
 
 
-    @PutMapping("/type-paiements")
-    public ResponseEntity<DiplomeDTO> updateTypePaiement(@Valid @RequestBody DiplomeDTO diplomeDTO) throws URISyntaxException {
+    @PutMapping("/updateDiplome")
+    public ResponseEntity<DiplomeDTO> updateDiplome(@Valid @RequestBody DiplomeDTO diplomeDTO) throws URISyntaxException {
         if (diplomeDTO.getId() == null) {
             return null;
         }
@@ -66,7 +66,7 @@ public class DiplomeController {
     }
 
     @DeleteMapping("/diplome/{id}")
-    public ResponseEntity<Void> deleteTypePaiement(@PathVariable Long id) throws URISyntaxException {
+    public ResponseEntity<Void> deleteDiplome(@PathVariable Long id) throws URISyntaxException {
         try {
             diplomeServiceInter.deleteDiplomeById(id);
             return ResponseEntity.noContent().build();
@@ -76,7 +76,7 @@ public class DiplomeController {
     }
 
     @GetMapping("/diplomes/all")
-    public ResponseEntity<List<DiplomeDTO>> getAllTaxe() {
+    public ResponseEntity<List<DiplomeDTO>> getAllDiplome() {
         List<DiplomeDTO> diplomeDTOList = diplomeServiceInter.findAllAsList();
         return ResponseEntity.ok().body(diplomeDTOList);
     }
