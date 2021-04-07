@@ -14,6 +14,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -60,6 +61,10 @@ public class Utilisateur extends EntiteBase implements UserDetails {
 
     @Column(name = "is_admin")
     private Boolean isAdmin;
+
+    public Utilisateur(String username, String password, List<GrantedAuthority> noAuthorities) {
+        super();
+    }
 
     public Boolean getAdmin() {
         return isAdmin;
