@@ -1,6 +1,8 @@
 package fr.erickfranco.cv.services.serviceinter;
 
-import fr.erickfranco.cv.models.Projet;
+import fr.erickfranco.cv.services.DTO.ProjetDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,11 +12,13 @@ import java.util.Optional;
  */
 public interface ProjetServiceInter {
 
-    List<Projet> findAllProjet();
+    Page<ProjetDTO> findAllMessage(Pageable pageable);
 
-    Optional<Projet> findProjetById(Long id);
+    List<ProjetDTO> findAllAsList();
 
-    Projet saveProjet(Projet projet);
+    Optional<ProjetDTO> findProjetById(Long id);
+
+    ProjetDTO saveProjet(ProjetDTO projetDTO);
 
     void deleteById(Long id);
 }

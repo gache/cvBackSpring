@@ -2,11 +2,16 @@ package fr.erickfranco.cv.services.serviceimpl;
 
 import fr.erickfranco.cv.models.Projet;
 import fr.erickfranco.cv.repositories.ProjetRepository;
+import fr.erickfranco.cv.services.DTO.ProjetDTO;
+import fr.erickfranco.cv.services.mapper.ProjetMapper;
 import fr.erickfranco.cv.services.serviceinter.ProjetServiceInter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author Erick Franco
@@ -15,38 +20,42 @@ import java.util.Optional;
 public class ProjetServiceImpl implements ProjetServiceInter {
 
     private final ProjetRepository projetRepository;
+    private final ProjetMapper projetMapper;
 
-    public ProjetServiceImpl(ProjetRepository projetRepository) {
+    public ProjetServiceImpl(ProjetRepository projetRepository, ProjetMapper projetMapper) {
         this.projetRepository = projetRepository;
+        this.projetMapper = projetMapper;
+    }
+
+
+    @Override
+    public Page<ProjetDTO> findAllMessage(Pageable pageable) {
+        return projetRepository.findAll(pageable)
+                .map(projetMapper::toDTO);
     }
 
     @Override
-    public List<Projet> findAllProjet() {
-        return projetRepository.findAll();
+    public List<ProjetDTO> findAllAsList() {
+        return projetRepository.findAll()
+                .stream()
+                .map(projetMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Projet> findProjetById(Long id) {
-        if (!projetRepository.existsById(id)) {
-            System.out.println("Le projet avec l'id " + id + " n'existe pas ");
-        }
-        return Optional.of(projetRepository.getOne(id));
+    public Optional<ProjetDTO> findProjetById(Long id) {
+        return projetRepository.findById(id).map(projetMapper::toDTO);
     }
 
     @Override
-    public Projet saveProjet(Projet projet) {
-        if (projet.getNom() == null || projet.getNom().isEmpty()) {
-            System.out.println("Le champ du Nom est obligatoire");
-        }
-        projetRepository.save(projet);
-        return projet;
+    public ProjetDTO saveProjet(ProjetDTO projetDTO) {
+        Projet projet = projetMapper.toEntity(projetDTO);
+        projet = projetRepository.save(projet);
+        return projetMapper.toDTO(projet);
     }
 
     @Override
     public void deleteById(Long id) {
-        if (!projetRepository.existsById(id)) {
-            System.out.println("Le Projet que vous souhaitez l'eliminer avec l'id numéro " + id + " n'existe pas ");
-        }
         projetRepository.deleteById(id);
     }
 }
