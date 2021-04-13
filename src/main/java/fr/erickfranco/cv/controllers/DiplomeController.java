@@ -3,6 +3,7 @@ package fr.erickfranco.cv.controllers;
 import fr.erickfranco.cv.controllers.utils.RestUtils;
 import fr.erickfranco.cv.services.DTO.DiplomeDTO;
 import fr.erickfranco.cv.services.serviceinter.DiplomeServiceInter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -26,6 +27,7 @@ public class DiplomeController {
 
     private final DiplomeServiceInter diplomeServiceInter;
 
+    @Autowired
     public DiplomeController(DiplomeServiceInter diplomeServiceInter) {
         this.diplomeServiceInter = diplomeServiceInter;
     }

@@ -4,6 +4,7 @@ import fr.erickfranco.cv.controllers.utils.RestUtils;
 import fr.erickfranco.cv.services.DTO.DiplomeDTO;
 import fr.erickfranco.cv.services.DTO.ExperienceDTO;
 import fr.erickfranco.cv.services.serviceinter.ExperienceServiceInter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -27,7 +28,7 @@ public class ExperienceController {
 
     private final ExperienceServiceInter experienceServiceInter;
 
-
+    @Autowired
     public ExperienceController(ExperienceServiceInter experienceServiceInter) {
         this.experienceServiceInter = experienceServiceInter;
     }
