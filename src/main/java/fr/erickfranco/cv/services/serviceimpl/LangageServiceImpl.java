@@ -2,11 +2,16 @@ package fr.erickfranco.cv.services.serviceimpl;
 
 import fr.erickfranco.cv.models.Langage;
 import fr.erickfranco.cv.repositories.LangageRepository;
+import fr.erickfranco.cv.services.DTO.LangageDTO;
+import fr.erickfranco.cv.services.mapper.LangageMapper;
 import fr.erickfranco.cv.services.serviceinter.LangageServiceInter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author Erick Franco
@@ -15,38 +20,41 @@ import java.util.Optional;
 public class LangageServiceImpl implements LangageServiceInter {
 
     private final LangageRepository langageRepository;
+    private final LangageMapper langageMapper;
 
-    public LangageServiceImpl(LangageRepository langageRepository) {
+    public LangageServiceImpl(LangageRepository langageRepository, LangageMapper langageMapper) {
         this.langageRepository = langageRepository;
+        this.langageMapper = langageMapper;
     }
 
     @Override
-    public List<Langage> findAllLangage() {
-        return langageRepository.findAll();
+    public Page<LangageDTO> findAllLangage(Pageable pageable) {
+        return langageRepository.findAll(pageable)
+                .map(langageMapper::toDTO);
     }
 
     @Override
-    public Optional<Langage> findLangageById(Long id) {
-        if (!langageRepository.existsById(id)) {
-            System.out.println("Le langage avec l'id " + id + " n'existe pas ");
-        }
-        return Optional.of(langageRepository.getOne(id));
+    public List<LangageDTO> findAllAsList() {
+        return langageRepository.findAll()
+                .stream()
+                .map(langageMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Langage saveLangage(Langage langage) {
-        if (langage.getLangageInformatique().isEmpty()) {
-            System.out.println("Le langage est est obligatoire");
-        }
-        return langageRepository.save(langage);
+    public Optional<LangageDTO> findLangageById(Long id) {
+        return langageRepository.findById(id).map(langageMapper::toDTO);
+    }
+
+    @Override
+    public LangageDTO saveLangage(LangageDTO langageDTO) {
+        Langage langage = langageMapper.toEntity(langageDTO);
+        langage = langageRepository.save(langage);
+        return langageMapper.toDTO(langage);
     }
 
     @Override
     public void deleteLangageById(Long id) {
-        if (!langageRepository.existsById(id)) {
-            System.out.println("Le langage que vous souhaitez l'eliminer avec l'id numéro: " + id + " n'existe pas ");
-        }
         langageRepository.deleteById(id);
-
     }
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Erick Franco
@@ -32,6 +33,7 @@ public class Diplome {
     @Column(columnDefinition = "Text")
     private String description;
 
+    @NotNull
     @JsonFormat(pattern = "YYYY-MM-DD", shape = JsonFormat.Shape.STRING)
     private String annee;
 }

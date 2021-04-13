@@ -1,13 +1,18 @@
 package fr.erickfranco.cv.services.serviceimpl;
 
+
 import fr.erickfranco.cv.models.Diplome;
 import fr.erickfranco.cv.repositories.DiplomeRepository;
+import fr.erickfranco.cv.services.DTO.DiplomeDTO;
+import fr.erickfranco.cv.services.mapper.DiplomeMapper;
 import fr.erickfranco.cv.services.serviceinter.DiplomeServiceInter;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author Erick Franco
@@ -16,38 +21,42 @@ import java.util.Optional;
 public class DiplomeServiceImpl implements DiplomeServiceInter {
 
     private final DiplomeRepository diplomeRepository;
+    private final DiplomeMapper diplomeMapper;
 
-    @Autowired
-    public DiplomeServiceImpl(DiplomeRepository diplomeRepository) {
+    public DiplomeServiceImpl(DiplomeRepository diplomeRepository, DiplomeMapper diplomeMapper) {
         this.diplomeRepository = diplomeRepository;
+        this.diplomeMapper = diplomeMapper;
+    }
+
+
+    @Override
+    public Page<DiplomeDTO> findAllDiplomes(Pageable pageable) {
+        return diplomeRepository.findAll(pageable)
+                .map(diplomeMapper::toDto);
     }
 
     @Override
-    public List<Diplome> findAllDiplome() {
-        return diplomeRepository.findAll();
+    public List<DiplomeDTO> findAllAsList() {
+        return diplomeRepository.findAll()
+                .stream()
+                .map(diplomeMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Diplome saveDiplome(Diplome diplome) {
-        if (diplome.getNomDiplome().isEmpty()) {
-            System.out.println("Le nom du diplome est obligatoire");
-        }
-        return diplomeRepository.save(diplome);
+    public Optional<DiplomeDTO> findDiplomeById(Long id) {
+        return diplomeRepository.findById(id).map(diplomeMapper::toDTO);
     }
 
     @Override
-    public Optional<Diplome> findDiplomeById(Long id) {
-        if (!diplomeRepository.existsById(id)){
-            System.out.println("Le Diplôme avec l'id " + id + " n'existe pas ");
-        }
-        return Optional.of(diplomeRepository.getOne(id));
+    public DiplomeDTO saveDiplome(DiplomeDTO diplomeDTO) {
+        Diplome diplome = diplomeMapper.toEntity(diplomeDTO);
+        diplome = diplomeRepository.save(diplome);
+        return diplomeMapper.toDTO(diplome);
     }
 
     @Override
     public void deleteDiplomeById(Long id) {
-        if (!diplomeRepository.existsById(id)){
-            System.out.println("Le Diplome que vous souhaitez l'eliminer avec l'id numéro: " + id + " n'existe pas ");
-        }
         diplomeRepository.deleteById(id);
     }
 }
